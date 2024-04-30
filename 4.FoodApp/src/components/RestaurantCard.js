@@ -3,7 +3,7 @@ import { CDN_URL } from "../utils/constants";
 const RestaurantCard = ({ resData }) => {
   return (
     <>
-      {resData.map((item) => {
+      {resData?.map((item) => {
         const {
           id,
           cloudinaryImageId,
