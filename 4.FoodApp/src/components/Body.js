@@ -1,11 +1,17 @@
 import { useEffect, useState } from "react";
 import RestaurantCard from "./RestaurantCard";
 import Shimmer from "./Shimmer";
+import { useOnlineStatus } from "../utils/customHooks/useOnlineStatus";
 
 const Body = () => {
   const [listOfRest, setListOfRest] = useState([]);
   const [filteredRest, setFilteredRes] = useState([]);
   const [inputValue, setInputValue] = useState("");
+
+  const onlineStatus = useOnlineStatus();
+  if (onlineStatus === false) {
+    return <h1>Looks like you are offline</h1>;
+  }
 
   useEffect(() => {
     fetchData();
@@ -13,7 +19,7 @@ const Body = () => {
 
   const fetchData = async () => {
     const res = await fetch(
-      "https://corsproxy.io/?https://www.swiggy.com/dapi/restaurants/list/v5?lat=12.9698196&lng=77.7499721&is-seo-homepage-enabled=true&page_type=DESKTOP_WEB_LISTING"
+      "https://www.swiggy.com/dapi/restaurants/list/v5?lat=12.9698196&lng=77.7499721&is-seo-homepage-enabled=true&page_type=DESKTOP_WEB_LISTING"
     );
     const json = await res.json();
     const finalData =
