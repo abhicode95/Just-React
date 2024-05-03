@@ -6,8 +6,6 @@ import { useOnlineStatus } from "../utils/customHooks/useOnlineStatus";
 const Header = () => {
   const [toggle, setToggle] = useState(true);
 
-  console.log("Header Render");
-
   useEffect(() => {
     console.log("UseEffect Called");
   });
@@ -17,17 +15,25 @@ const Header = () => {
 
   const onlineStatus = useOnlineStatus();
   return (
-    <div className="header">
+    <div className="flex justify-between shadow-lg bg-pink-100 sm:bg-yellow-200">
       <div>
-        <img src={LOGO_URL} alt="FoodImg" className="logo" />
+        <img src={LOGO_URL} alt="FoodImg" className="w-40" />
       </div>
-      <div className="nav-items">
-        <ul>
-          <li>Online Status:{onlineStatus ? "🟢" : "🔴"}</li>
-          <Link to="/">Home</Link>
-          <Link to="/about">About Us</Link>
-          <Link to="/contact">Contact Us</Link>
-          <Link to="/grocery">Grocery</Link>
+      <div className="flex items-center">
+        <ul className="flex p-4 m-4 ">
+          <li className="px-4">Online Status:{onlineStatus ? "🟢" : "🔴"}</li>
+          <Link to="/" className="px-4">
+            Home
+          </Link>
+          <Link to="/about" className="px-4">
+            About Us
+          </Link>
+          <Link to="/contact" className="px-4">
+            Contact Us
+          </Link>
+          <Link to="/grocery" className="px-4">
+            Grocery
+          </Link>
           <Link>Cart</Link>
           <button className="login" onClick={clickHandler}>
             {toggle ? "Login" : "Logout"}
